@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">WebService</string>
+    <string name="app_name">Shopping</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
 </resources>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,11 +16,12 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    ArrayList<User> listuser;
+    ArrayList<String> products,images;
     Context ct;
 
-    public MyAdapter(Context ct,ArrayList<User> listuser){
-        this.listuser = listuser;
+    public MyAdapter(Context ct,ArrayList<String> products,ArrayList<String> images){
+        this.products = products;
+        this.images = images;
         this.ct = ct;
     }
     @NonNull
@@ -30,24 +32,23 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.user.setText(String.valueOf(listuser.get(position).getId()));
-        holder.username.setText(listuser.get(position).getUsername());
-        holder.email.setText(listuser.get(position).getPassword());
+        holder.name.setText(products.get(position));
+        //holder.image.(products.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return listuser.size();
+        return products.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView user,username,email;
+        TextView name;
         MyAdapter myAdapter;
+        ImageView image;
         public MyViewHolder(@NonNull View itemView, MyAdapter myAdapter) {
             super(itemView);
-            username = itemView.findViewById(R.id.username);
+            name = itemView.findViewById(R.id.textView);
             this.myAdapter = myAdapter;
-
         }
     }
 }

@@ -1,11 +1,21 @@
 package com.example.webservice;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< Updated upstream
+=======
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+>>>>>>> Stashed changes
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 import org.json.JSONException;
@@ -26,8 +36,12 @@ public class Register extends AppCompatActivity {
     Button save;
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     OkHttpClient client = new OkHttpClient();
+<<<<<<< Updated upstream
     String url = "http://192.168.1.6:8088/save/user";
 
+=======
+    String url = "http://172.16.110.192:8088/save/user";
+>>>>>>> Stashed changes
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +55,6 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Thread thread = new Thread(new Runnable() {
-
                     @Override
                     public void run() {
                         try {
@@ -72,6 +85,25 @@ public class Register extends AppCompatActivity {
         try (Response response = client.newCall(request).execute()) {
             Objects.requireNonNull(response.body()).string();
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflator = getMenuInflater();
+        inflator.inflate(R.menu.menu,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mlogin:
+                Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(i);
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

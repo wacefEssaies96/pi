@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="196dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
@@ -23,7 +23,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
+<<<<<<< Updated upstream
         android:layout_marginTop="1dp"
+=======
+        android:layout_marginTop="8dp"
+>>>>>>> Stashed changes
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -32,22 +36,56 @@
 
     <Button
         android:id="@+id/login"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="288dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="316dp"
+        android:fadingEdge="vertical"
         android:text="Login"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/register"
+<<<<<<< Updated upstream
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginTop="352dp"
+=======
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="101dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="436dp"
+>>>>>>> Stashed changes
         android:text="Register"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="407dp"
+        android:layout_height="174dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.007"
+        tools:srcCompat="@drawable/shopping" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="226dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="268dp"
+        android:text="Don't have an account ?"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
