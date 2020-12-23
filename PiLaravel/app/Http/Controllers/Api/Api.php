@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
 
 class Api extends Controller{
-    
+
     public function a($user,$pass){
         $odoo = new \Edujugon\Laradoo\Odoo();
         $odoo = $odoo
@@ -28,31 +28,27 @@ class Api extends Controller{
     public function login(Request $request){
         if(empty($request->username) || empty($request->password) ){
             $configUsername = Config::get('global.user');
-            $configPassword = Config::get('global.pass'); 
+            $configPassword = Config::get('global.pass');
             return $this->a($configUsername,$configPassword);
         }
         else{
-          return $this->a($request->username,$request->password);  
+          return $this->a($request->username,$request->password);
         }
     }
 
-    public function viewSaleOrder(){
-        $configUsername = Config::get('global.user');
-        $configPassword = Config::get('global.pass'); 
-        $data = $this->a($configUsername,$configPassword);
-        $ok = array("status" => 1);
-        $notok = array("status" => 0);
-        if(json_encode($data->getData()) == json_encode($ok) ){
+    public function viewSaleOrder(Request $request){
             $odoo = new \Edujugon\Laradoo\Odoo();
             $odoo = $odoo
-                ->username(Config::get('global.user'))
-                ->password(Config::get('global.pass'))
+                ->username($request->username)
+                ->password($request->password)
                 ->db('shopping1')
                 ->host('http://localhost:8069');
-            $odoo->connect();
-            $list = $odoo->get('sale.order');
-            return response()->json($list);
-        }
-        return response()->json('invalid credentials !');
+            try {
+                $odoo->connect();
+                $list = $odoo->fields('name','image')->get('product.template');
+            } catch (\Throwable $th) {
+                return response()->json('invalid credentials !');
+            }
+        return response()->json($list);
     }
 }

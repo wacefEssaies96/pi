@@ -12,6 +12,7 @@
         "axdlee/laravel-config-writer": "^1.0",
         "edujugon/laradoo": "^3.1",
         "fideloper/proxy": "^4.0",
+        "fruitcake/laravel-cors": "^2.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0"
     },
