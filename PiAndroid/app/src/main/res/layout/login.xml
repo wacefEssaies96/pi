@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="196dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -32,21 +32,57 @@
 
     <Button
         android:id="@+id/login"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="288dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="352dp"
+        android:fadingEdge="vertical"
         android:text="Login"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/register"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="92dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="148dp"
+        android:text="register"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="407dp"
+        android:layout_height="174dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.007"
+        tools:srcCompat="@drawable/shopping" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="196dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="272dp"
+        android:text="Don't have an account ?"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <CheckBox
+        android:id="@+id/rem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="356dp"
-        android:text="Register"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="308dp"
+        android:text="Remember me"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

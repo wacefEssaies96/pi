@@ -3,15 +3,13 @@ package com.example.webservice;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
+import java.util.Objects;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import okhttp3.MediaType;
@@ -39,7 +37,6 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Thread thread = new Thread(new Runnable() {
-
                     @Override
                     public void run() {
                         try {
@@ -59,7 +56,6 @@ public class Register extends AppCompatActivity {
         JSONObject json = new JSONObject();
         json.put("username", username);
         json.put("password", bCryptHashString);
-        Log.i("test",json.toString());
         post(json.toString());
     }
     void post(String json) throws IOException {
@@ -69,8 +65,7 @@ public class Register extends AppCompatActivity {
                 .post(body)
                 .build();
         try (Response response = client.newCall(request).execute()) {
-            response.body().string();
+            Objects.requireNonNull(response.body()).string();
         }
     }
-
 }

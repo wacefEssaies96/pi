@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
 
 class Api extends Controller{
-
     public function a($user,$pass){
         $odoo = new \Edujugon\Laradoo\Odoo();
         $odoo = $odoo
@@ -37,18 +36,31 @@ class Api extends Controller{
     }
 
     public function viewSaleOrder(Request $request){
-            $odoo = new \Edujugon\Laradoo\Odoo();
-            $odoo = $odoo
-                ->username($request->username)
-                ->password($request->password)
-                ->db('shopping1')
-                ->host('http://localhost:8069');
-            try {
-                $odoo->connect();
-                $list = $odoo->fields('name','image')->get('product.template');
-            } catch (\Throwable $th) {
-                return response()->json('invalid credentials !');
+
+        if(gettype($request->username) == 'string'){
+            $test = [
+                "username"=>$request->username,
+                "password"=>$request->password
+            ];
+        }else{
+            foreach($request->all() as $mydata){
+                $test = $mydata;
             }
+        }
+
+        $odoo = new \Edujugon\Laradoo\Odoo();
+        $odoo = $odoo
+            ->username($test["username"])
+            ->password($test["password"])
+            ->db('shopping1')
+            ->host('http://localhost:8069');
+        try {
+            $odoo->connect();
+            $list = $odoo->fields('name','image','list_price')->limit(7)->get('product.template');
+
+        } catch (\Throwable $th) {
+            return response()->json('invalid credentials :');
+        }
         return response()->json($list);
     }
 }
