@@ -35,8 +35,8 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="316dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="352dp"
         android:fadingEdge="vertical"
         android:text="Login"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
@@ -48,8 +48,8 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="92dp"
         android:layout_height="36dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="152dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="148dp"
         android:text="register"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/password" />
@@ -67,13 +67,23 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="226dp"
-        android:layout_height="36dp"
+        android:layout_width="196dp"
+        android:layout_height="32dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="272dp"
         android:text="Don't have an account ?"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <CheckBox
+        android:id="@+id/rem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="308dp"
+        android:text="Remember me"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

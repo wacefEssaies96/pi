@@ -3,10 +3,13 @@ package com.example.webservice;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,8 +26,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
-    EditText username,password;
+    private SharedPreferences nPre;
+    private SharedPreferences.Editor nEditor;
+    EditText tusername,tpassword;
+    private CheckBox nCheckBox;
     Button login,register;
     String url = "http://26488b5e11e0.ngrok.io/api/login";
 
@@ -33,11 +38,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
+        tusername = findViewById(R.id.username);
+        tpassword = findViewById(R.id.password);
         login = findViewById(R.id.login);
+        nCheckBox = findViewById(R.id.rem);
         register = findViewById(R.id.register);
 
+        nPre = PreferenceManager.getDefaultSharedPreferences(this);
+        nEditor = nPre.edit();
+        checkSharedPreferences();
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,11 +57,25 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String user = username.getText().toString();
-                final String pwd = password.getText().toString();
+                final String user = tusername.getText().toString();
+                final String pwd = tpassword.getText().toString();
                 if(user.isEmpty() || pwd.isEmpty()){
                     Toast.makeText(getApplicationContext(),"Please fill all the blanks.",Toast.LENGTH_LONG).show();
                 }else{
+                    if(nCheckBox.isChecked()){
+                        nEditor.putString(getString(R.string.chekbox),"True");
+                        nEditor.apply();
+
+                        String name = tusername.getText().toString();
+                        nEditor.putString(getString(R.string.name),name);
+                        nEditor.commit();
+
+                        String password = tpassword.getText().toString();
+                        nEditor.putString(getString(R.string.password),password);
+                    }else{
+                        nEditor.putString(getString(R.string.chekbox),"False");
+                    }
+                    nEditor.commit();
                     log(user,pwd);
                 }
             }
@@ -75,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                         if(status == 1){
                             Intent i = new Intent(getApplicationContext(),SplachScreenActivity.class);
                             startActivity(i);
+                            finish();
                         }else{
                             Toast.makeText(getApplicationContext(),"Invalid credentials",Toast.LENGTH_LONG).show();
 
@@ -92,6 +116,17 @@ public class MainActivity extends AppCompatActivity {
             }
         );
         Volley.newRequestQueue(this).add(jsObjRequest);
+    }
+
+    private void checkSharedPreferences(){
+
+        String checkbox = nPre.getString(getString(R.string.chekbox),"False");
+        String name = nPre.getString(getString(R.string.name),"");
+        String password = nPre.getString(getString(R.string.password),"");
+
+        tusername.setText(name);
+        tpassword.setText(password);
+        nCheckBox.setChecked(checkbox.equals("True"));
     }
 
 }
