@@ -23,11 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-<<<<<<< Updated upstream
-        android:layout_marginTop="1dp"
-=======
         android:layout_marginTop="8dp"
->>>>>>> Stashed changes
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -49,22 +45,15 @@
 
     <Button
         android:id="@+id/register"
-<<<<<<< Updated upstream
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginTop="352dp"
-=======
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="101dp"
         android:layout_height="48dp"
         android:layout_marginStart="260dp"
         android:layout_marginTop="436dp"
->>>>>>> Stashed changes
-        android:text="Register"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"

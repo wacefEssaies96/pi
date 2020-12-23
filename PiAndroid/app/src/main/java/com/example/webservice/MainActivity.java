@@ -58,27 +58,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-<<<<<<< Updated upstream
-    private void searchUser(final String username, final String pass){
-        final StringRequest stringRequest = new
-                StringRequest(Request.Method.GET,"http://192.168.1.6:8088/user/"+username,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONObject object;
-                        try {
-                            object = new JSONObject(response);
-                            String p = object.getString("password");
-                            BCrypt.Result result = BCrypt.verifyer().verify(pass.toCharArray(),p);
-                            if(result.verified){
-                                Toast.makeText(getApplicationContext(),"vous etes connecté",Toast.LENGTH_LONG).show();
-                            }
-                            else{
-                                Toast.makeText(getApplicationContext(),"invalid",Toast.LENGTH_LONG).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-=======
 
     private void log(final String user, final String pwd) {
 
@@ -98,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(i);
                         }else{
                             Toast.makeText(getApplicationContext(),"Invalid credentials",Toast.LENGTH_LONG).show();
->>>>>>> Stashed changes
+
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -116,5 +95,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this,error.getMessage()+" error Loading Users",Toast.LENGTH_LONG).show();
+                    }
+                });
+        Volley.newRequestQueue(this).add(stringRequest);
+    }
 
 }

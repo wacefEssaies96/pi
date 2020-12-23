@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
 
 class Api extends Controller{
-
     public function a($user,$pass){
         $odoo = new \Edujugon\Laradoo\Odoo();
         $odoo = $odoo
