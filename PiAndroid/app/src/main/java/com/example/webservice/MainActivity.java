@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText username,password;
     Button login,register;
-    String url = "http://abd5e1f50d3b.ngrok.io/api/login";
+    String url = "http://26488b5e11e0.ngrok.io/api/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,21 +92,6 @@ public class MainActivity extends AppCompatActivity {
             }
         );
         Volley.newRequestQueue(this).add(jsObjRequest);
-    }
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this,error.getMessage()+" error Loading Users",Toast.LENGTH_LONG).show();
-                    }
-                });
-        Volley.newRequestQueue(this).add(stringRequest);
     }
 
 }

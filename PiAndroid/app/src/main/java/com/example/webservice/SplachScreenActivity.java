@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class SplachScreenActivity extends AppCompatActivity {
     ArrayList<String> data=new ArrayList<>();
     ArrayList<String> images=new ArrayList<>();
-    String url = "http://abd5e1f50d3b.ngrok.io/api/list";
+    String url = "http://26488b5e11e0.ngrok.io/api/list";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -45,15 +45,14 @@
 
     <Button
         android:id="@+id/register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="352dp"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="101dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="260dp"
-        android:layout_marginTop="436dp"
+        android:layout_width="92dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="152dp"
+        android:text="register"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <ImageView
         android:id="@+id/imageView"
