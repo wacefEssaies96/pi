@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   user = new User();
   msg="";
+  
   constructor(private _service : RegistrationService, private _router : Router) { }
 
   ngOnInit() {
@@ -27,18 +29,28 @@ export class LoginComponent implements OnInit {
     //   console.log(" exception "+this.user.username),
     //   this.msg=" Please enter valid values ";
     // }
-    //users=this._service.loginUserFromRemote(this.user);
+
+    
 
     this._service.loginUserFromRemote(this.user).subscribe(
       data =>{
-        console.log("responce recieved",data)//,
-        //this._router.navigate(['/loginsuccess'])
+        console.log("responce recieved",data),
+        this.go(data)
       } ,
       error => {
-        console.log(" exception "+this.user.username+" pwd "+this.user.password);
-        this.msg=" Please enter valid values ";
+        console.log(" exception verifier api ");
+        
       } , 
     );
+
+  }
+  go( data){
+    console.log("responce in go",data);
+    if(data.status == 1){
+      this._router.navigate(['/listproduits']);
+    }else{
+      this.msg=" Please enter valid values ";
+    }
   }
 
   gotoregistration(){
