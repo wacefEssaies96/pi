@@ -1,1 +1,27 @@
-<p>listproduit works!</p>
+
+<div class="container">
+    <h2>Login form</h2>
+    <form #loginform="ngForm"  (ngSubmit)="list()">
+      <div class="form-group">
+        <input type="text" class="form-control" value="ihebbenhelel@gmail.com" name="username" [(ngModel)]="user.username" required >
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" value="admin" name="password" [(ngModel)]="user.password" required >
+      </div>
+      <button  type="submit" class="btn btn-info ">Refresh</button>
+    </form>
+  </div>
+
+<h2>Produits</h2>
+
+<div *ngFor ="let produit of produits; index as produitId">
+ <img [src]="produit.image" alt=""  width="300" height="350">
+
+ <p *ngFor="let produit of produits; index as produitId">
+    <h3>
+        {{ produit.name }}
+    </h3><br>
+    <p >
+        Price: {{ produit.list_price }}
+    </p>
+</div>
