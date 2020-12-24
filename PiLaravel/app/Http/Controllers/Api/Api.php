@@ -7,15 +7,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
 
 class Api extends Controller{
-    public function a($user,$pass){
+
+    public function auth($user,$pass){
         $odoo = new \Edujugon\Laradoo\Odoo();
         $odoo = $odoo
         ->username($user)
         ->password($pass)
         ->db('shopping1')
         ->host('http://localhost:8069');
-        Config::write('global.user',$user);
-        Config::write('global.pass',$pass);
         try {
             $odoo->connect();
         } catch (\Throwable $th) {
@@ -25,33 +24,26 @@ class Api extends Controller{
     }
 
     public function login(Request $request){
-        if(empty($request->username) || empty($request->password) ){
-            $configUsername = Config::get('global.user');
-            $configPassword = Config::get('global.pass');
-            return $this->a($configUsername,$configPassword);
-        }
-        else{
-          return $this->a($request->username,$request->password);
-        }
+        return $this->auth($request->username,$request->password);
     }
 
     public function viewSaleOrder(Request $request){
 
         if(gettype($request->username) == 'string'){
-            $test = [
+            $data = [
                 "username"=>$request->username,
                 "password"=>$request->password
             ];
         }else{
             foreach($request->all() as $mydata){
-                $test = $mydata;
+                $data = $mydata;
             }
         }
 
         $odoo = new \Edujugon\Laradoo\Odoo();
         $odoo = $odoo
-            ->username($test["username"])
-            ->password($test["password"])
+            ->username($data["username"])
+            ->password($data["password"])
             ->db('shopping1')
             ->host('http://localhost:8069');
         try {
@@ -62,5 +54,25 @@ class Api extends Controller{
             return response()->json('invalid credentials :');
         }
         return response()->json($list);
+    }
+
+    public function register(){
+        $odoo = new \Edujugon\Laradoo\Odoo();
+        $odoo = $odoo
+            ->username("wacef.stratrait@gmail.com")
+            ->password("admin")
+            ->db('shopping1')
+            ->host('http://localhost:8069');
+        $odoo->connect();
+        $odoo->create('res.users',[
+            'name' => 'test',
+            'login' => 'test',
+            'new_password' => 'test',
+            'company_ids' => [1],
+            'company_id' => 1,
+        ]);
+        //'create', [{'name':"userAPI", 'login':'userapi@gmail.com','company_ids':[1], 'company_id':1, 'new_password':'1234567890'}])
+        //$data = $odoo->get('res.users');
+        return response("test");
     }
 }

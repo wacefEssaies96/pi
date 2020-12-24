@@ -3,10 +3,12 @@ package com.example.webservice;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
@@ -31,18 +33,18 @@ public class SplachScreenActivity extends AppCompatActivity {
     ArrayList<String> data = new ArrayList<>();
     ArrayList<String> prices = new ArrayList<>();
     ArrayList<String> images = new ArrayList<>();
-    String url = "http://26488b5e11e0.ngrok.io/api/list";
+    private SharedPreferences nPre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splach_screen);
-
+        nPre = PreferenceManager.getDefaultSharedPreferences(this);
         //optional
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("username", "wacef.stratrait@gmail.com");
-            jsonObject.put("password", "admin");
+            jsonObject.put("username", nPre.getString(getString(R.string.name),""));
+            jsonObject.put("password", nPre.getString(getString(R.string.password),""));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -50,7 +52,7 @@ public class SplachScreenActivity extends AppCompatActivity {
         json.put(jsonObject);
 
         //creating request to get list of products
-        JsonArrayRequest req = new JsonArrayRequest(Request.Method.POST, url, json,
+        JsonArrayRequest req = new JsonArrayRequest(Request.Method.POST, getResources().getString(R.string.api_url)+"/api/list", json,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -87,7 +89,7 @@ public class SplachScreenActivity extends AppCompatActivity {
 
         //making timeout
         req.setRetryPolicy(new DefaultRetryPolicy(
-                20000,
+                15000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
@@ -104,6 +106,6 @@ public class SplachScreenActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
-        },20000);
+        },15000);
     }
 }

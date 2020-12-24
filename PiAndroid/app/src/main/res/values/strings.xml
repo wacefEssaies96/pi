@@ -2,7 +2,10 @@
     <string name="app_name">Shopping</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+
+
     <string name="chekbox">PACKAGE.chekbox</string>
     <string name="name">PACKAGE.name</string>
     <string name="password">PACKAGE.password</string>
+    <string name="api_url">http://87ea6b771521.ngrok.io</string>
 </resources>

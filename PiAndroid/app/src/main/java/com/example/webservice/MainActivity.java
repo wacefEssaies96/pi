@@ -31,13 +31,11 @@ public class MainActivity extends AppCompatActivity {
     EditText tusername,tpassword;
     private CheckBox nCheckBox;
     Button login,register;
-    String url = "http://26488b5e11e0.ngrok.io/api/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
         tusername = findViewById(R.id.username);
         tpassword = findViewById(R.id.password);
         login = findViewById(R.id.login);
@@ -88,11 +86,11 @@ public class MainActivity extends AppCompatActivity {
         params.put("username", user);
         params.put("password", pwd);
 
-        CustomRequest jsObjRequest = new CustomRequest(Request.Method.POST, url, params,
+        CustomRequest jsObjRequest = new CustomRequest(Request.Method.POST, getResources().getString(R.string.api_url)+"/api/login", params,
             new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    Log.d("Successful Response: ", response.toString());
+                    Log.d("Successful Response: ", "Success");
                     try {
                         int status = response.getInt("status");
                         if(status == 1){
@@ -101,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                             finish();
                         }else{
                             Toast.makeText(getApplicationContext(),"Invalid credentials",Toast.LENGTH_LONG).show();
-
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
