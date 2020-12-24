@@ -1,0 +1,21 @@
+
+<div class="container">
+    <h2>Login form</h2>
+    <form #loginform="ngForm"  (ngSubmit)="loginUser()">
+      <div class="form-group">
+        <small class="text-danger" >{{msg}}<br></small>
+        <label for="username">User Name :</label>
+        <input type="text" class="form-control" placeholder="Enter username" name="username" [(ngModel)]="user.username" required >
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" placeholder="Enter password" name="password" [(ngModel)]="user.password" required >
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+      <button [disabled]="loginform.form.invalid" type="submit" class="btn btn-info ">Login</button>
+    </form>
+    <small class="float-right" (click)="gotoregistration()" >Register</small>
+    <!-- <small class="float-right" [routerLink]="['/registration']" >Register</small> -->
+  </div>

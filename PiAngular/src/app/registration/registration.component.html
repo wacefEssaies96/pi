@@ -1,0 +1,22 @@
+
+<div class="container">
+    <h2>Registration form</h2>
+    <form #Registerform="ngForm"  (ngSubmit)="registerUser()">
+      <div class="form-group">
+        <small class="text-danger" >{{msg}}<br></small>
+        <label for="username">User Name :</label>
+        <input type="text" class="form-control" placeholder="Enter username" name="username" [(ngModel)]="user.username" required >
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" placeholder="Enter password" name="password" [(ngModel)]="user.password" required >
+      </div>
+      <div class="form-group">
+        <label for="pwd">Confirm Password:</label>
+        <input type="password" class="form-control" placeholder="Valide password" name="cpassword"  required >
+      </div>
+      <button [disabled]="Registerform.form.invalid" type="submit" class="btn btn-info ">Register</button>
+    </form>
+    <small class="float-right" (click)="gotologin()" >Login</small>
+    <!-- <small class="float-right" [routerLink]="['/login']" >Register</small> -->
+  </div>
