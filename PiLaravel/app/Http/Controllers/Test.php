@@ -17,17 +17,17 @@ class Test extends Controller
             $odoo->connect();
 
             //View all users with limit
-            
+
             $users = $odoo->limit(3)->get('res.users');
 
             //view all sale order
-            
+
             $saleOrder = $odoo->get('sale.order');
 
     }
 
     public function login(){
-        
+
         $odoo = new \Edujugon\Laradoo\Odoo();
         $odoo = $odoo
             ->username('wacef.stratrait@gmail.comm')
@@ -39,17 +39,15 @@ class Test extends Controller
         } catch (\Throwable $th) {
             dump($th->getMessage());
         }
-        
+
         return view('welcome');
     }
     public function test(){
 
-        
-
         // $id = $odoo->create('res.partner',['name' => 'Jonh Odoo']);
-        
+
         // $userId= $odoo->getUid();
-        
+
         //$id = $odoo->where('name', 'Jonh Odoo' )->search('res.partner');
 
         // $models = $odoo->where('customer', true)
@@ -70,8 +68,8 @@ class Test extends Controller
         //         'offset'=>1,
         //         'limit'=>5
         //     ]);
-        
-        
+
+
         return view('welcome',[
             // 'userId'=>$userId,
             // 'ids'=>$ids,

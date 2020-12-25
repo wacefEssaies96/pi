@@ -27,8 +27,7 @@ class Api extends Controller{
         return $this->auth($request->username,$request->password);
     }
 
-    public function viewSaleOrder(Request $request){
-
+    public function viewProducts(Request $request){
         if(gettype($request->username) == 'string'){
             $data = [
                 "username"=>$request->username,
@@ -39,7 +38,6 @@ class Api extends Controller{
                 $data = $mydata;
             }
         }
-
         $odoo = new \Edujugon\Laradoo\Odoo();
         $odoo = $odoo
             ->username($data["username"])
@@ -56,23 +54,111 @@ class Api extends Controller{
         return response()->json($list);
     }
 
-    public function register(){
+    public function viewAllUsers(Request $request){
+        if(gettype($request->username) == 'string'){
+            $data = [
+                "username"=>$request->username,
+                "password"=>$request->password
+            ];
+        }else{
+            foreach($request->all() as $mydata){
+                $data = $mydata;
+            }
+        }
         $odoo = new \Edujugon\Laradoo\Odoo();
         $odoo = $odoo
-            ->username("wacef.stratrait@gmail.com")
-            ->password("admin")
+            ->username($data["username"])
+            ->password($data["password"])
+            ->db('shopping1')
+            ->host('http://localhost:8069');
+        try {
+            $odoo->connect();
+            $users = $odoo->fields('name','email','phone','image_medium')->get('res.partner');
+
+        } catch (\Throwable $th) {
+            return response()->json('invalid credentials :');
+        }
+        return response()->json($users);
+    }
+
+    public function searchProductByName(Request $request){
+        if(gettype($request->username) == 'string'){
+            $data = [
+                "username"=>$request->username,
+                "password"=>$request->password,
+                "filter"=>$request->filter
+            ];
+        }else{
+            foreach($request->all() as $mydata){
+                $data = $mydata;
+            }
+        }
+        $odoo = new \Edujugon\Laradoo\Odoo();
+        $odoo = $odoo
+            ->username($data["username"])
+            ->password($data["password"])
             ->db('shopping1')
             ->host('http://localhost:8069');
         $odoo->connect();
-        $odoo->create('res.users',[
-            'name' => 'test',
-            'login' => 'test',
-            'new_password' => 'test',
-            'company_ids' => [1],
-            'company_id' => 1,
+        $ids = $odoo->call('product.template', 'search',[
+            [
+                ['name', 'ilike', $request->filter]
+            ]
         ]);
-        //'create', [{'name':"userAPI", 'login':'userapi@gmail.com','company_ids':[1], 'company_id':1, 'new_password':'1234567890'}])
-        //$data = $odoo->get('res.users');
-        return response("test");
+        $myArray = json_decode(json_encode($ids), true);
+        $product = $odoo->where('id', $myArray)->fields('name','email','phone','image')->get('product.template');
+        return response($product);
     }
+    public function createUser(Request $request){
+        $odoo = new \Edujugon\Laradoo\Odoo();
+        $odoo = $odoo
+        ->username($request->username)
+        ->password($request->password)
+        ->db('shopping1')
+        ->host('http://localhost:8069');
+        try {
+            $odoo->connect();
+            $odoo->create('res.partner',[
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 0]);
+        }
+        return response()->json(['status' => 1]);
+    }
+    public function updateUser(Request $request){
+        $odoo = new \Edujugon\Laradoo\Odoo();
+        $odoo = $odoo
+        ->username($request->username)
+        ->password($request->password)
+        ->db('shopping1')
+        ->host('http://localhost:8069');
+        try {
+            $odoo->connect();
+            $odoo->where('name', $request->name)
+            ->update('res.partner',['name' => $request->updatedName,'email' => $request->updatedEmail,'phone'=>$request->updatedPhone]);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 0]);
+        }
+        return response()->json(['status' => 1]);
+    }
+    public function deleteUser(Request $request){
+        $odoo = new \Edujugon\Laradoo\Odoo();
+        $odoo = $odoo
+        ->username($request->username)
+        ->password($request->password)
+        ->db('shopping1')
+        ->host('http://localhost:8069');
+        try {
+            $odoo->connect();
+            $odoo->where('name', $request->name)
+            ->delete('res.partner');
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 0]);
+        }
+        return response()->json(['status' => 1]);
+    }
+
 }

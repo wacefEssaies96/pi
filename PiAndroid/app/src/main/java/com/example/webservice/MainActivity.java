@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Space;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences.Editor nEditor;
     EditText tusername,tpassword;
     private CheckBox nCheckBox;
-    Button login,register;
+    Button login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +41,11 @@ public class MainActivity extends AppCompatActivity {
         tpassword = findViewById(R.id.password);
         login = findViewById(R.id.login);
         nCheckBox = findViewById(R.id.rem);
-        register = findViewById(R.id.register);
 
         nPre = PreferenceManager.getDefaultSharedPreferences(this);
         nEditor = nPre.edit();
         checkSharedPreferences();
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),Register.class);
-                startActivity(i);
-            }
-        });
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,46 +68,17 @@ public class MainActivity extends AppCompatActivity {
                         nEditor.putString(getString(R.string.chekbox),"False");
                     }
                     nEditor.commit();
-                    log(user,pwd);
+                    Intent intent = new Intent(getApplicationContext(), SplachScreenActivity.class);
+                    intent.putExtra("value","login");
+                    intent.putExtra("username",user);
+                    intent.putExtra("password",pwd);
+                    startActivity(intent);
                 }
             }
         });
     }
 
-    private void log(final String user, final String pwd) {
 
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("username", user);
-        params.put("password", pwd);
-
-        CustomRequest jsObjRequest = new CustomRequest(Request.Method.POST, getResources().getString(R.string.api_url)+"/api/login", params,
-            new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    Log.d("Successful Response: ", "Success");
-                    try {
-                        int status = response.getInt("status");
-                        if(status == 1){
-                            Intent i = new Intent(getApplicationContext(),SplachScreenActivity.class);
-                            startActivity(i);
-                            finish();
-                        }else{
-                            Toast.makeText(getApplicationContext(),"Invalid credentials",Toast.LENGTH_LONG).show();
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            },
-            new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError response) {
-                    Log.d("Error Response: ", response.toString());
-                }
-            }
-        );
-        Volley.newRequestQueue(this).add(jsObjRequest);
-    }
 
     private void checkSharedPreferences(){
 

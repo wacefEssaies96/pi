@@ -16,6 +16,17 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
 Route::post('/login','Api\Api@login');
-Route::post('/register','Api\Api@register');
-Route::post('/list','Api\Api@viewSaleOrder');
+//Show Products
+Route::post('/list','Api\Api@viewProducts');
+//View Users
+Route::post('/users','Api\Api@viewAllUsers');
+//Search products by name
+Route::post('/product','Api\Api@searchProductByName');
+
+//Create,Update,Delete user
+Route::post('/createUser','Api\Api@createUser');
+Route::post('/updateUser','Api\Api@updateUser');
+Route::post('/deleteUser','Api\Api@deleteUser');

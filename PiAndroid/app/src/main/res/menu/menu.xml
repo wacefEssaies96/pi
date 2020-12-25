@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/register"
-        android:id="@+id/mregister"
+    <item android:title="View Images"
+        android:id="@+id/viewImages"
         />
-    <item android:title="@string/login"
-        android:id="@+id/mlogin"/>
+    <item android:title="List products"
+        android:id="@+id/products"/>
 </menu>

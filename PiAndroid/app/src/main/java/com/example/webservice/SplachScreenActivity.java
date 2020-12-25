@@ -33,13 +33,72 @@ public class SplachScreenActivity extends AppCompatActivity {
     ArrayList<String> data = new ArrayList<>();
     ArrayList<String> prices = new ArrayList<>();
     ArrayList<String> images = new ArrayList<>();
-    private SharedPreferences nPre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splach_screen);
-        nPre = PreferenceManager.getDefaultSharedPreferences(this);
+
+        Intent i = getIntent();
+        String value = i.getStringExtra("value");
+
+        if(value.equals("login")){
+            String user = i.getStringExtra("username");
+            String pwd = i.getStringExtra("password");
+            login(user,pwd);
+        }
+        if(value.equals("products")){
+            loadingProducts();
+        }
+
+    }
+    private void login(final String user, final String pwd) {
+
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("username", user);
+        params.put("password", pwd);
+
+        CustomRequest jsObjRequest = new CustomRequest(Request.Method.POST, getResources().getString(R.string.api_url)+"/api/login", params,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("Successful Response: ", "Success");
+                        try {
+                            int status = response.getInt("status");
+                            if(status == 1){
+                                Intent i = new Intent(getApplicationContext(),IsetActivity.class);
+                                startActivity(i);
+                                finish();
+                            }else{
+                                Toast.makeText(getApplicationContext(),"Invalid credentials",Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError response) {
+                        Log.d("Error Response: ", response.toString());
+                    }
+                }
+        );
+        Volley.newRequestQueue(this).add(jsObjRequest);
+        //loading screen
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent i = new Intent(getApplicationContext(),IsetActivity.class);
+                startActivity(i);
+                finish();
+            }
+        },6000);
+    }
+
+
+    private void loadingProducts(){
+        SharedPreferences nPre = PreferenceManager.getDefaultSharedPreferences(this);
         //optional
         JSONObject jsonObject = new JSONObject();
         try {
@@ -56,7 +115,7 @@ public class SplachScreenActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                       // Log.d("Successful Response: ", response.toString());
+                        // Log.d("Successful Response: ", response.toString());
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject object;
                             String name = null, price = null;

@@ -7,5 +7,16 @@
     <string name="chekbox">PACKAGE.chekbox</string>
     <string name="name">PACKAGE.name</string>
     <string name="password">PACKAGE.password</string>
-    <string name="api_url">http://87ea6b771521.ngrok.io</string>
+    <string name="api_url">http://d11a9c95249c.ngrok.io</string>
+    <string name="name_iset_fr">Institut Supérieur des études Technologiques de Bizerte </string>
+    <string name="name_iset_ar">المعهد العالي للدراسات التكنولوجية ببنزرت</string>
+    <string name="description_title">Description du ISETB :</string>
+    <string name="description_content">ISET de Bizerte est un établissement public à caractère scientifique et technologique. Sa principale mission consiste à contribuer au développement socio-économique et au transfert technologique dans la région Bizerte ainsi que le renforcement de l\'employabilité l’insertion professionnelle des diplômés de l’enseignement supérieur.
+</string>
+    <string name="component_title">Composants du bâtiment :</string>
+    <string name="component">Les édifices de l’ISET de Bizerte se composent de quatre blocs d’une superficie dépassant les 13 000m².</string>
+    <string name="bloc1">Bloc N°1 : Hall principal et entrée des étudiants et les invités de l’institut</string>
+    <string name="bloc2">Bloc N°2 : Administration</string>
+    <string name="bloc3">Bloc N°3 : Bureaux et locaux divers</string>
+    <string name="bloc4">Bloc N°4 : Bloc pépinière d’entreprise</string>
 </resources>
