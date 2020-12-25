@@ -1,5 +1,5 @@
 
-<div class="container">
+<!-- <div class="container">
     <h2>Login form</h2>
     <form #loginform="ngForm"  (ngSubmit)="list()">
       <div class="form-group">
@@ -10,12 +10,13 @@
       </div>
       <button  type="submit" class="btn btn-info ">Refresh</button>
     </form>
-  </div>
+  </div> -->
 
 <h2>Produits</h2>
 
 <div *ngFor ="let produit of produits; index as produitId">
- <img [src]="produit.image" alt=""  width="300" height="350">
+
+ <img [src]="'data:image/jpeg;base64,'+produit.image" alt=" verifier image url "  width="300" height="350">
 
  <p *ngFor="let produit of produits; index as produitId">
     <h3>

@@ -10,4 +10,7 @@
 |
 */
 
-Route::get('/', 'Test@list_produit');
+// Route::get('/', 'Test@list_produit');
+Route::get('/',function(){
+    return "Programme api";
+});

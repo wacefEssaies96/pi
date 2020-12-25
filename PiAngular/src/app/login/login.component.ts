@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
   go( data){
     console.log("responce in go",data);
     if(data.status == 1){
-      this._router.navigate(['/listproduits']);
+      this._router.navigate(['/loginsuccess']);
     }else{
       this.msg=" Please enter valid values ";
     }
