@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { produits } from '../produits';
 
 import { ProduitsService } from '../produits.service';
+import { RegistrationService } from '../registration.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +16,7 @@ export class ListproduitComponent implements OnInit {
   produits = produits;
   
   constructor() {}
-  // constructor() {private  _service : ProduitsService, private _router : Router }
+  // constructor() {private _service : RegistrationService, private _router : Router }
   
   ngOnInit() {
   }

@@ -47,5 +47,12 @@ export class RegistrationService {
   // public registerUserFromRemote(user : User):Observable<any>{
   //   return this._http.post<any>("http://localhost:8088/save/user",user)
   // }
+  
+  public listproduit():Observable<any>{
+    return this._http.post<any>("http://localhost:8000/api/list",{
+      "username" : "ihebbenhelel@gmail.com",
+      "password" : "admin"
+  });
+}
 
 }
