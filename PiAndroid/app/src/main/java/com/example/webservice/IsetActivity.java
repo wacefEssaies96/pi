@@ -25,26 +25,30 @@ public class IsetActivity extends AppCompatActivity {
         //Inflate the menu; this adds items to the action bar if it is present.
         MenuInflater inflator = getMenuInflater();
         inflator.inflate(R.menu.menu_iset,menu);
-
         return true;
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.viewImages:
-                Toast.makeText(this, "Menu ViewImages selected", Toast.LENGTH_SHORT).show();
+                Intent i1 = new Intent(getApplicationContext(),SlideImagesActivity.class);
+                startActivity(i1);
                 break;
             case R.id.products:
-                Intent i = new Intent(getApplicationContext(),SplachScreenActivity.class);
-                i.putExtra("value","products");
-                startActivity(i);
+                Intent i2 = new Intent(getApplicationContext(),SplachScreenActivity.class);
+                i2.putExtra("value","products");
+                startActivity(i2);
                 finish();
                 break;
             case R.id.customers:
-                Intent intent = new Intent(getApplicationContext(),SplachScreenActivity.class);
-                intent.putExtra("value","customers");
-                startActivity(intent);
+                Intent i3 = new Intent(getApplicationContext(),SplachScreenActivity.class);
+                i3.putExtra("value","customers");
+                startActivity(i3);
                 finish();
+                break;
+            case R.id.map:
+                Intent i4 = new Intent(getApplicationContext(),MapsActivity.class);
+                startActivity(i4);
                 break;
             default:
                 break;

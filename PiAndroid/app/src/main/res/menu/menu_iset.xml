@@ -5,6 +5,9 @@
     <item android:title="View Images"
         android:id="@+id/viewImages"
         />
+    <item android:title="Google Maps"
+        android:id="@+id/map"
+        />
     <item android:title="Products"
         android:id="@+id/products"/>
     <item android:title="Customers"
