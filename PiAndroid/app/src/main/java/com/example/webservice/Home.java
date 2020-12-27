@@ -1,6 +1,8 @@
 package com.example.webservice;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +13,9 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -28,6 +33,7 @@ import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
     private RecyclerView myrecycler;
+    MyAdapter myAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +52,55 @@ public class Home extends AppCompatActivity {
         }
         //setting recycler view
         myrecycler=findViewById(R.id.rv);
-        MyAdapter myAdapter = new MyAdapter(getApplicationContext(),data,prices,decodedList);
+        myAdapter = new MyAdapter(getApplicationContext(),data,prices,decodedList);
         myrecycler.setAdapter(myAdapter);
         myrecycler.setLayoutManager(new GridLayoutManager(this,3));
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflator = getMenuInflater();
+        inflator.inflate(R.menu.menu,menu);
+        // Associate searchable configuration with the SearchView
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myAdapter.getFilter().filter(newText);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+        };
+
+        searchView.setOnQueryTextListener(queryTextListener);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.viewImages:
+                Toast.makeText(this, "Menu ViewImages selected", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.products:
+                Intent i = new Intent(getApplicationContext(),SplachScreenActivity.class);
+                i.putExtra("value","products");
+                startActivity(i);
+                finish();
+                break;
+            case R.id.customers:
+                Intent intent = new Intent(getApplicationContext(),SplachScreenActivity.class);
+                intent.putExtra("value","customers");
+                startActivity(intent);
+                finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
