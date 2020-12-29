@@ -1,6 +1,6 @@
 import React from 'react';
 import {View,Text,StyleSheet, Image} from 'react-native';
-
+import { NavigationContainer } from '@react-navigation/native';
 
 
 const Iset=()=>
@@ -69,6 +69,7 @@ Ce premier bloc comprend entre autre :</div>
       
     );
 }
+
 
 const styles = StyleSheet.create({
   

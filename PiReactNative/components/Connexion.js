@@ -40,9 +40,9 @@ export default class Connexion extends React.Component {
       .then(response => {
         let res = response.data;
         if(res.status == 1){
-          // Auth.email = email;
-          // Auth.name = email;
-          // Auth.connectionMode = 'classic';
+           Auth.email = email;
+           Auth.name = email;
+           Auth.connectionMode = 'classic';
          
 
         }
@@ -106,7 +106,6 @@ responseGoogle = (response) => {
         callback={this.responseFacebook}
         cssClass="my-facebook-button-class"
         icon="fa-facebook"
-
       />
 
       <GoogleLogin
