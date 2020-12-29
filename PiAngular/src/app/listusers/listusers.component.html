@@ -1,0 +1,39 @@
+<hr>
+<div class="container">
+  <div class="row">
+    <h2 class="col-3" >Users</h2>
+    
+    <a routerLink="#" class=" col-3"><button class="btn  btn-info">Ajouter</button></a>
+      <!-- <button class="col-3"  type="submit"  (click)="adduser()" class="btn btn-info ">Ajouter</button> -->
+    <div  class="col-6">
+      <form #searchform="ngForm"  (ngSubmit)="list()" >
+        <div class="row">
+          <div class="form-group;col-3" >
+            <input type="text" class="form-control" value="" name="password" [(ngModel)]="user.filtre" required >
+          </div>
+          <button class="col-3" [disabled]="searchform.form.invalid" type="submit" class="btn btn-info ">Rechercher</button>
+        </div>
+        </form>
+    </div>
+  </div>
+  <hr>
+  <div *ngFor ="let user of users; index as userId; let i = index" class="container">
+    
+    <div>
+      <img [src]="'data:image/jpeg;base64,'+user.image_medium" alt=" verifier image url "  width="300" height="350">
+
+      <p *ngFor="let user of users; index as userId;">
+        <!-- <p> Index : {{ i }}</p> -->
+          <h3>
+              {{ user.name }}
+          </h3><br>
+          <p >
+              Email : {{ user.email }} 
+          </p>
+          <p >
+              Phone : {{ user.phone }} 
+          </p>
+    </div>
+  </div>
+
+</div>

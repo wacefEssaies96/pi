@@ -1,28 +1,52 @@
+<hr>
+<div class="container">
+  <div class="row">
+    <h2 class="col-6" >Produits</h2>
+    <div  class="col-6">
+      <form #searchform="ngForm"  (ngSubmit)="list()"  >
+        <!-- <div class="form-group">
+          <input type="text" class="form-control" value="ihebbenhelel@gmail.com" name="username" [(ngModel)]="user.username" required >
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" value="admin" name="password" [(ngModel)]="user.password" required >
+        </div> -->
+        <div class="row">
+          <div class="form-group;col-3" >
+            <input type="text" class="form-control" value="" name="password" [(ngModel)]="user.filtre" required >
+          </div>
+          <button class="col-3" [disabled]="searchform.form.invalid" type="submit" class="btn btn-info ">Rechercher</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <hr>
+  <div *ngFor ="let produit of produits; index as produitId; let i = index" class="container">
+    <div class="row">
+      <!-- *ngIf="(i%2 === 0)"> -->
+      <div class="col-5" >
+        <img [src]="'data:image/jpeg;base64,'+produit.image" alt=" verifier image url "  width="300" height="350">
 
-<!-- <div class="container">
-    <h2>Login form</h2>
-    <form #loginform="ngForm"  (ngSubmit)="list()">
-      <div class="form-group">
-        <input type="text" class="form-control" value="ihebbenhelel@gmail.com" name="username" [(ngModel)]="user.username" required >
+        <p *ngFor="let produit of produits; index as produitId;">
+        <!-- <p> Index : {{ i }}</p> -->
+        <h3>
+            {{ produit.name }}
+        </h3><br>
+        <p >
+            Price : {{ produit.list_price }} $
+        </p>
       </div>
-      <div class="form-group">
-        <input type="password" class="form-control" value="admin" name="password" [(ngModel)]="user.password" required >
-      </div>
-      <button  type="submit" class="btn btn-info ">Refresh</button>
-    </form>
-  </div> -->
+    <!-- <div class="col-5" >
+      <img [src]="'data:image/jpeg;base64,'+produit.image" alt=" verifier image url "  width="300" height="350">
 
-<h2>Produits</h2>
-
-<div *ngFor ="let produit of produits; index as produitId">
-
- <img [src]="'data:image/jpeg;base64,'+produit.image" alt=" verifier image url "  width="300" height="350">
-
- <p *ngFor="let produit of produits; index as produitId">
-    <h3>
-        {{ produit.name }}
-    </h3><br>
-    <p >
-        Price: {{ produit.list_price }}
-    </p>
+      <p *ngFor="let produit of produits; index as produitId;">
+        <p> Index : {{ i }}</p>
+          <h3>
+              {{ produit.name }}
+          </h3><br>
+          <p >
+              Price : {{ produit.list_price }} $
+          </p>
+    </div> -->
+    </div>  
+  </div>
 </div>
