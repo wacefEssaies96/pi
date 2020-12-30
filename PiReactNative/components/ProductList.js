@@ -18,7 +18,7 @@ export default class ProductList extends React.Component{
   }
 
   async getData() {
-    let data ={'username':'Salhiamani20@gmail.com', 'password':'admin'};
+    let data ={'username':'wacef.stratrait@gmail.com', 'password':'admin'};
     let headers = {'Content-Type': 'text/json'};
     return await axios.post('http://localhost:8000/api/list',data, {headers:headers})
   }

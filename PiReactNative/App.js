@@ -6,6 +6,7 @@ import Iset from './components/Iset';
 import ProductList from './components/ProductList';
 import Navigation from './Navigation';
 import Login from './screens/Login';
+import Menu from './components/Menu';
 // import 'react-native-gesture-handler';
 // // import * as React from 'react';
 // import { NavigationContainer } from '@react-navigation/native';
@@ -13,8 +14,9 @@ import Login from './screens/Login';
 
 export default function App() {
   return (
-      <Navigation></Navigation>
-   
+       <Navigation></Navigation>
+       //<Menu></Menu> 
+      //<Login></Login>
   );
   
 }

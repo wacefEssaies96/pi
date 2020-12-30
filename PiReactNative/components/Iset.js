@@ -1,19 +1,23 @@
 import React from 'react';
-import {View,Text,StyleSheet, Image} from 'react-native';
+import {View,Text,StyleSheet, Image,Button} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import ProductList from './ProductList';
 
-
-const Iset=()=>
+const Iset=(props)=>
 {
-  
     return(
       
         <View style={styles.row}>
-         
+          
             <Image  
             source={require('../assets/iset.jpg')}
             style={styles.imageContainer}>
             </Image>
+            <View>
+            <Button title="Open drawer" onPress={() => props.navigation.openDrawer()} />
+
+            </View>
             <View style={styles.textContainer}>
 
               <View style={styles.row}>

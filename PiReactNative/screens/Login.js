@@ -1,6 +1,7 @@
 import {Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import  React from 'react';
+
 import {Text, View,StyleSheet,Image,ScrollView, Button } from 'react-native';
 import FacebookLogin from 'react-facebook-login'
 import GoogleLogin from 'react-google-login';
@@ -55,7 +56,7 @@ const Login = props =>
     return(
         <ScrollView style={{backgroundColor: 'white'}}>
             <View style={styles.Container}>
-               
+                    
                 <Image  
                     source={require('../assets/shop.png')}
                     resizeMode="center"
