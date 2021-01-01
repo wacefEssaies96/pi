@@ -106,7 +106,7 @@ class Api extends Controller{
             ]
         ]);
         $myArray = json_decode(json_encode($ids), true);
-        $product = $odoo->where('id', $myArray)->fields('name','email','phone','image')->get('product.template');
+        $product = $odoo->where('id', $myArray)->fields('name','image','list_price')->get('product.template');
         return response($product);
     }
     public function createUser(Request $request){
