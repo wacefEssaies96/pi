@@ -73,7 +73,7 @@ class Api extends Controller{
             ->host('http://localhost:8069');
         try {
             $odoo->connect();
-            $users = $odoo->fields('name','email','phone','image_medium')->get('res.partner');
+            $users = $odoo->where('customer', true)->fields('name','email','phone','image')->get('res.partner');
 
         } catch (\Throwable $th) {
             return response()->json('invalid credentials :');
@@ -102,7 +102,7 @@ class Api extends Controller{
         $odoo->connect();
         $ids = $odoo->call('product.template', 'search',[
             [
-                ['name', 'ilike', $request->filter]
+                ['name', 'ilike', $data["filter"]]
             ]
         ]);
         $myArray = json_decode(json_encode($ids), true);
