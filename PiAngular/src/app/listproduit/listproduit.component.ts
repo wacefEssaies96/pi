@@ -12,10 +12,10 @@ import { User } from '../user';
 })
 export class ListproduitComponent implements OnInit  {
 
-
   user = new User();
-  user1 = new User();
   produits = {};
+  lengthproduits=0;
+  findproduits=0;
 
   
   
@@ -23,27 +23,44 @@ export class ListproduitComponent implements OnInit  {
   constructor(private _service : ProduitsService, private _router : Router) { }
   
   ngOnInit() {
-    this._service.listproduit(this.user1).subscribe(
+    this.produits = {};
+    this.lengthproduits=0;
+    this.findproduits=0;
+    this._service.listproduit(this.user).subscribe(
+      
       data =>{
         console.log("list ok",data),
         this.produits=data,
+        this.lengthproduits=data.length,
+        this.findproduits=1,
         this._router.navigate(['/listproduits'])
       } ,
       error => {
-        console.log(" exception list problem ");
+        this.produits = {},
+        this.lengthproduits=0,
+        console.log(" exception list problem ")
       } , 
     );
+    
   }
   
   list(){
+    this.produits = {};
+    this.lengthproduits=0;
+    this.findproduits=0;
     this._service.listproduitsearch(this.user).subscribe(
       data =>{
         console.log("list ok",data),
         this.produits=data,
+        this.lengthproduits=data.length,
+        this.findproduits=1,
         this._router.navigate(['/listproduits'])
       } ,
       error => {
-        console.log(" exception list problem ");
+        this.produits = {},
+        this.lengthproduits=0,
+        this.findproduits=1,
+        console.log(" exception list problem ")
       } , 
     );
 

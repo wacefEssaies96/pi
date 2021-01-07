@@ -12,41 +12,94 @@
         </div> -->
         <div class="row">
           <div class="form-group;col-3" >
-            <input type="text" class="form-control" value="" name="password" [(ngModel)]="user.filtre" required >
+            <input type="text" class="form-control" value="" name="filter" [(ngModel)]="user.filtre" required >
           </div>
           <button class="col-3" [disabled]="searchform.form.invalid" type="submit" class="btn btn-info ">Rechercher</button>
         </div>
+
       </form>
     </div>
   </div>
-  <hr>
-  <div *ngFor ="let produit of produits; index as produitId; let i = index" class="container">
-    <div class="row">
-      <!-- *ngIf="(i%2 === 0)"> -->
-      <div class="col-5" >
-        <img [src]="'data:image/jpeg;base64,'+produit.image" alt=" verifier image url "  width="300" height="350">
-
-        <p *ngFor="let produit of produits; index as produitId;">
-        <!-- <p> Index : {{ i }}</p> -->
-        <h3>
-            {{ produit.name }}
-        </h3><br>
-        <p >
-            Price : {{ produit.list_price }} $
-        </p>
-      </div>
-    <!-- <div class="col-5" >
-      <img [src]="'data:image/jpeg;base64,'+produit.image" alt=" verifier image url "  width="300" height="350">
-
-      <p *ngFor="let produit of produits; index as produitId;">
-        <p> Index : {{ i }}</p>
-          <h3>
-              {{ produit.name }}
-          </h3><br>
-          <p >
-              Price : {{ produit.list_price }} $
-          </p>
-    </div> -->
-    </div>  
   </div>
-</div>
+  <hr>
+  <div id="wrapper" *ngIf="(findproduits == 0)">
+    
+    <div class="profile-main-loader">
+      <div class="loader">
+        <svg class="circular-loader"viewBox="25 25 50 50" >
+          <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2" />
+        </svg>
+      </div>
+    </div>
+        
+    </div>
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+      <div class="content-overlay"></div>
+      <div class="content-wrapper">
+
+        <div class="content-body">
+          <section id="carousel">
+
+            <div  *ngIf="(lengthproduits == 0 && findproduits == 1)" > Il n'y a aucun Produit de ce Nom ou contient ce cilabe </div>
+            <!-- <div *ngIf="(lengthproduits != 0 )" > -->
+            
+              <div *ngFor ="let produit of produits; index as produitId; let i = index" class="container">
+                
+            
+            <div class="row match-height" >
+              
+                    <!-- Carousel Interval Start 1-->
+                    <div class="col-lg-6"  >
+                      <div class="card" id="carousel-interval">
+                        <div class="card-header">
+                          <h4 class="card-title">{{ produit.name }}</h4>
+                        </div>
+                        <div class="card-content">
+                          <div class="card-body">
+                            <p>
+                              Price : {{ produit.list_price }} $
+                            </p>
+
+                            <div id="carousel-example-interval" class="carousel slide" data-ride="carousel">
+                              <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-interval" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-interval" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-interval" data-slide-to="2"></li>
+                              </ol>
+                              <div class="carousel-inner" role="listbox">
+                                <div class="carousel-item active" data-interval="1000">
+                                  <img  class="img-fluid" [src]="'data:image/jpeg;base64,'+produit.image" alt=" verifier image url "   alt="First slide">
+                                </div>
+                                <div class="carousel-item" data-interval="1000">
+                                  <img  class="img-fluid" [src]="'data:image/jpeg;base64,'+produit.image" alt=" verifier image url "   alt="Second slide">
+                                </div>
+                                <div class="carousel-item" data-interval="1000">
+                                  <img  class="img-fluid" [src]="'data:image/jpeg;base64,'+produit.image" alt=" verifier image url "   alt="Third slide">
+                                </div>
+                              </div>
+                              <a class="carousel-control-prev" href="#carousel-example-interval" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="carousel-control-next" href="#carousel-example-interval" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
+                            </div>
+
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <!-- Carousel Interval End -->
+            </div>
+          </div>
+
+          </section>
+
+        </div>
+      </div>
+    </div>
+    <!-- END: Content-->
