@@ -1,8 +1,6 @@
 import React from 'react';
 import {View,Text,StyleSheet, Image,Button} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import ProductList from './ProductList';
+
 
 const Iset=(props)=>
 {

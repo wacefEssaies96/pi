@@ -6,14 +6,14 @@ import {Text, View,StyleSheet,Image,ScrollView, Button } from 'react-native';
 import FacebookLogin from 'react-facebook-login'
 import GoogleLogin from 'react-google-login';
 import axios from "axios";
-import Account from '../components/Account';
-import Inputs from '../components/Inputs';
-import Submit from '../components/Submit';
 import Auth from "../components/Auth";
  
 
 const Login = props =>
 {
+    if(Auth.email !== '') {
+        props.navigation.navigate('Productlist')
+    }
     const responseFacebook = (response) => {
         Auth.state = true;
         Auth.name = response.name;
@@ -42,7 +42,6 @@ const Login = props =>
         let res = response.data;
         if(res.status == 1){
             Auth.name = Auth.email;
-            Auth.password = "";
             Auth.connectionMode = 'classic';
             props.navigation.navigate('iset');
 
@@ -75,7 +74,7 @@ const Login = props =>
                             color='grey'
                         />
                     }
-                    //onChange = {(eventCount, target, text) =>{ a = "hello"; console.log("this => ", text)}}
+                  
                     onChangeText= {text =>{Auth.email=text;}}
                 />
 
@@ -89,12 +88,11 @@ const Login = props =>
                             color='grey'
                         />
                     }
-                    //onChange = {(eventCount, target, text) =>{ a = "hello"; console.log("this => ", text)}}
+                   
                     onChangeText= {text =>{Auth.password=text;}}
                 />
 
-                {/* <Inputs name="Email" icon="user" />
-                <Inputs name="Password" icon="lock" pass={true}/> */}
+                
                 <View style={{width: '90%'}}>
                     <Text style={[styles.textBody], {alignSelf: 'flex-end'}}>
                         Forget Password?

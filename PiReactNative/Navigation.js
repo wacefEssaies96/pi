@@ -1,12 +1,11 @@
 import * as  React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import Login from './screens/Login';
-import SignUp from './screens/SignUp';
 import Iset from './components/Iset';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import ProductList from './components/ProductList';
 
-const Stack = createStackNavigator();
+
 const Drawer = createDrawerNavigator();
 
 function MyDrawer() {
@@ -14,11 +13,13 @@ function MyDrawer() {
     <Drawer.Navigator initialRouteName="login">
         <Drawer.Screen name="login" component={Login} options={{headerShown: false}} />
         <Drawer.Screen name="iset" component={Iset} options={{headerShown: false}} />
-        <Drawer.Screen name="SignUp" component={SignUp} options={{headerShown: false}} />
+        <Drawer.Screen name="Productlist" component={ProductList} options={{headerShown: false}} />
+        {/* <Drawer.Screen name="Userslist" component={UserstList} options={{headerShown: false}} /> */}
+        {/* <Drawer.Screen name="Logout" component={Logout} options={{headerShown: false}} /> */}
     </Drawer.Navigator>
   );
 }
-const Navigation = props => {
+const Navigation = () => {
     return (
         <NavigationContainer>
            <MyDrawer /> 

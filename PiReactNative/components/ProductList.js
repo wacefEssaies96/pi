@@ -1,10 +1,17 @@
 import * as React from 'react';
-import {Text, View,FlatList, Form,StyleSheet, SafeAreaView,Image } from 'react-native';
+// import {Input} from 'react-native-elements';
+// import Icon from 'react-native-vector-icons/FontAwesome';
+import { View,FlatList,StyleSheet,Image } from 'react-native';
 import axios from "axios";
+import  { getAuthData } from './Auth';
+
 export default class ProductList extends React.Component{
   state = {
-    list: []
+    list: [],
+    filter: ''
   }
+
+  
 
   componentDidMount() {
 
@@ -16,11 +23,31 @@ export default class ProductList extends React.Component{
       return this.list;
     });
   }
+  //search
+  // searchProductRequest(props) {
+  //   let headers = {'Content-Type': 'text/json'};
+  //   let data = getAuthData()
+  //   //data.filter = this.state.filter;
+  //   alert(JSON.stringify(this.props));
+  //   return;
+  //   axios.post('http://localhost:8000/api/product', data, {headers:headers}).then(response => {
+  //     this.setState({list:response.data})
+  //       return this.list;
+  //   })
+  // }
 
+
+  // searchProduct() {
+  //     this.searchProductRequest().then(response => {
+  //       this.setState({list:response.data})
+  //       return this.list;
+  //     });
+      
+  //   }
   async getData() {
-    let data ={'username':'wacef.stratrait@gmail.com', 'password':'admin'};
+    let data = getAuthData()
     let headers = {'Content-Type': 'text/json'};
-    return await axios.post('http://localhost:8000/api/list',data, {headers:headers})
+    return await axios.post('http://localhost:8000/api/list', data, {headers:headers})
   }
   
   renderProduct(item) {
@@ -47,6 +74,20 @@ export default class ProductList extends React.Component{
 
       <View style={this.styles.container}>
         <h1>Product list</h1>
+        
+        {/* search */}
+        {/* <Input
+            placeholder="Rechercher ..."
+            leftIcon= {
+                <Icon
+                    name = "search"
+                    size={22}
+                    color='black'
+                />
+            }
+            onChangeText= {text =>{this.state.filter=text;}}
+        />
+        <Button onPress= {this.searchProductRequest}  title="Rechercher" color="#0148a4"/> */}
       
         
         <FlatList
