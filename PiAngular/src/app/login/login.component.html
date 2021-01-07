@@ -1,21 +1,95 @@
+<!-- BEGIN: Content-->
+    <div class="app-content content">
+      <div class="content-overlay"></div>
+      <div class="content-wrapper">
+        <div class="content-header row"></div>
+        <div class="content-body"><!-- login page start -->
+          <section id="auth-login" class="row flexbox-container">
+              <div class="col-xl-10 col-11">
+                  <div class="card bg-authentication mb-0">
+                      <div class="row m-0">
+                        <!-- left section-login -->
+                        <div class="col-md-6 col-12 px-0">
+                            <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
+                                <div class="card-header pb-1">
+                                    <div class="card-title">
+                                        <h4 class="text-center mb-2">Login </h4>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                  <div class="card-body">
+                                    <div class="d-flex flex-md-row flex-column justify-content-around">
+                                        <a href="#" class="btn btn-social btn-google btn-block font-small-3 mr-md-1 mb-md-0 mb-1">
+                                          <i class="bx bxl-google font-medium-3"></i>
+                                          <span class="pl-50 d-block text-center">Google</span>
+                                        </a>
+                                        <a href="#" class="btn btn-social btn-block mt-0 btn-facebook font-small-3">
+                                          <i class="bx bxl-facebook-square font-medium-3"></i>
+                                          <span class="pl-50 d-block text-center">Facebook</span>
+                                        </a>
+                                    </div>
+                                    <!-- <div class="divider">
+                                        <div class="divider-text text-uppercase text-muted">
+                                          <small>or login withemail</small>
+                                        </div>
+                                    </div> -->
+                                        
+                                    <form #loginform="ngForm"  (ngSubmit)="loginUser()">
+                                      <small class="text-danger" >{{msg}}<br></small>
+                                      <div class="form-group mb-50">
+                                        <label class="text-bold-600" for="Username">User Name </label>
+                                        <input type="text" class="form-control" id="Username" name="username" [(ngModel)]="user.username" required placeholder="Enter username">
+                                      </div>
+                                      <div class="form-group">
+                                        <label class="text-bold-600" for="Password">Password</label>
+                                        <input type="password" class="form-control" id="Password" name="password" [(ngModel)]="user.password" required placeholder="Password">
+                                      </div>
+                                      <!-- <div class="form-group d-flex flex-md-row flex-column justify-content-between align-items-center">
+                                        <div class="text-left">
+                                            <div class="checkbox checkbox-sm">
+                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                <label class="checkboxsmall" for="exampleCheck1"><small>Keep me logged in</small></label>
+                                            </div>
+                                        </div>
+                                        <div class="text-right"><a href="auth-forgot-password.html" class="card-link"><small>Forgot Password?</small></a>
+                                        </div>
+                                      </div> -->
+                                      <button [disabled]="loginform.form.invalid" type="submit" class="btn btn-primary glow w-100 position-relative">
+                                        Login<i id="icon-arrow" class="bx bx-right-arrow-alt"></i>
+                                      </button>
+                                    </form>
 
-<div class="container">
-    <h2>Login form</h2>
-    <form #loginform="ngForm"  (ngSubmit)="loginUser()">
-      <div class="form-group">
-        <small class="text-danger" >{{msg}}<br></small>
-        <label for="username">User Name :</label>
-        <input type="text" class="form-control" placeholder="Enter username" name="username" [(ngModel)]="user.username" required >
+                                    <!-- <hr>
+                                    <div class="text-center">
+                                      <small class="mr-25">Don't have an account?</small>
+                                      <!- <a href="gotoregistration()"><small>Sign up</small></a> ->
+                                      
+                                      <small class="float-right" (click)="gotoregistration()" >Register</small> 
+                                      <!- <small class="float-right" [routerLink]="['/registration']" >Register</small> ->
+                                    </div>   -->
+                                        
+                                  </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- right section image -->
+                        <div class="col-md-6 d-md-block d-none text-center align-self-center p-3">
+                            <div class="card-content">
+                              
+                                <!-- <img  alt=" verifier image url "  width="100" height="100"> -->
+                                <img class="img-fluid" 
+                                src="assets/Sopping.jpg" alt="branding logo">
+                                <!-- src="https://www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/app-assets/images/pages/login.png "" -->
+                                 
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+          <!-- login page ends -->
+        </div>
       </div>
-      <div class="form-group">
-        <label for="pwd">Password:</label>
-        <input type="password" class="form-control" placeholder="Enter password" name="password" [(ngModel)]="user.password" required >
-      </div>
-      <div class="checkbox">
-        <label><input type="checkbox" name="remember"> Remember me</label>
-      </div>
-      <button [disabled]="loginform.form.invalid" type="submit" class="btn btn-info ">Login</button>
-    </form>
-    <small class="float-right" (click)="gotoregistration()" >Register</small>
-    <!-- <small class="float-right" [routerLink]="['/registration']" >Register</small> -->
-  </div>
+    </div>
+    <!-- END: Content-->

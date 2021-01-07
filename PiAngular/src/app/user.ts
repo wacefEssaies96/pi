@@ -2,6 +2,7 @@ export class User {
     id:number;
     username:string;
     password:string;
+    filtre:string;
 
     constructor(){}
     // constructor(id:number,username:string,password:string){

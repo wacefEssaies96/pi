@@ -102,7 +102,8 @@ class Api extends Controller{
         $odoo->connect();
         $ids = $odoo->call('product.template', 'search',[
             [
-                ['name', 'ilike', $data["filter"]]
+                ['name', 'ilike',  strtoupper($request->filter)],
+
             ]
         ]);
         $myArray = json_decode(json_encode($ids), true);
